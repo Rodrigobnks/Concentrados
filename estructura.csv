@@ -130,7 +130,6 @@ FRAY BARTOLOME-PYG-R3,NO APLICA,Norte Oriente,Norte,Bartolome Pistiyo,Pistiyo,Pi
 COBAN-P-R1,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
 COBAN-P-R2,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
 COBAN-P-R3,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
-COBAN-P-R4,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
 FLORES-PYG-R1,NO APLICA,Norte Oriente,Norte,Flores Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Flores Pistiyo,PY
 FLORES-PYG-R2,NO APLICA,Norte Oriente,Norte,Flores Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Flores Pistiyo,PY
 FLORES-P-R1,NO APLICA,Norte Oriente,Norte,Flores Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Flores Presico,P
@@ -242,7 +241,7 @@ CHOTA-CP-R2,NO APLICA,Norte,Norte,Chota La Casita,La Casita,La Casita,Présico L
 CHOTA-CP-R3,NO APLICA,Norte,Norte,Chota La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Chota La Casita,C
 CHULUCANAS-CP-R1,NO APLICA,Norte,Norte,Chulucanas La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Chulucanas La Casita,C
 CHULUCANAS-CP-R2,NO APLICA,Norte,Norte,Chulucanas La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Chulucanas La Casita,C
-OLMOS-PP-R1,NO APLICA,Norte,Norte,Olmos Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Olmos Presico,P
+OLMOS-PP-R1,NO APLICA,Norte,Nor Oriente,Olmos Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Olmos Presico,P
 PIURA-CP-R1,NO APLICA,Norte,Norte,Piura La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Piura La Casita,C
 PIURA-CP-R2,NO APLICA,Norte,Norte,Piura La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Piura La Casita,C
 PIURA-CP-R3,NO APLICA,Norte,Norte,Piura La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Piura La Casita,C
@@ -253,7 +252,8 @@ PIURA-PP-R4,NO APLICA,Norte,Norte,Piura Presico,Presico,Presico,Présico LATAM,P
 TALARA-PP-R1,NO APLICA,Norte,Norte,Talara Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Talara Presico,P
 TALARA-PP-R2,NO APLICA,Norte,Norte,Talara Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Talara Presico,P
 TALARA-PP-R3,NO APLICA,Norte,Norte,Talara Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Talara Presico,P
-TARAPOTO-PP-R1,NO APLICA,Norte,Norte,Tarapoto Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Tarapoto Presico,P
+TARAPOTO-PP-R1,NO APLICA,Norte,Nor Oriente,Tarapoto Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Tarapoto Presico,P
+TARAPOTO-PP-R2,NO APLICA,Norte,Nor Oriente,Tarapoto Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Tarapoto Presico,P
 BARRANCA-PP-R1,NO APLICA,Norte,Norte Chico,Barranca Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Barranca Presico,P
 BARRANCA-PP-R2,NO APLICA,Norte,Norte Chico,Barranca Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Barranca Presico,P
 BARRANCA-PP-R3,NO APLICA,Norte,Norte Chico,Barranca Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Barranca Presico,P
@@ -268,6 +268,7 @@ HUACHO-CP-R3,NO APLICA,Norte,Norte Chico,Huacho La Casita,La Casita,La Casita,Pr
 HUACHO-PP-R1,NO APLICA,Norte,Norte Chico,Huacho Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huacho Presico,P
 HUACHO-PP-R2,NO APLICA,Norte,Norte Chico,Huacho Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huacho Presico,P
 HUACHO-PP-R3,NO APLICA,Norte,Norte Chico,Huacho Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huacho Presico,P
+HUACHO-PP-R4,NO APLICA,Norte,Norte Chico,Huacho Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huacho Presico,P
 HUANUCO-PP-R1,NO APLICA,Norte,Norte Chico,Huanuco Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huanuco Presico,P
 HUARAZ-PP-R1,NO APLICA,Norte,Norte Chico,Huaraz Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huaraz Presico,P
 TRUJILLO-CP-R1,NO APLICA,Norte,Norte Chico,Trujillo La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Trujillo La Casita,C
@@ -275,24 +276,24 @@ TRUJILLO-PP-R1,NO APLICA,Norte,Norte Chico,Trujillo Presico,Presico,Presico,Pré
 TRUJILLO-PP-R2,NO APLICA,Norte,Norte Chico,Trujillo Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Trujillo Presico,P
 TRUJILLO-PP-R3,NO APLICA,Norte,Norte Chico,Trujillo Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Trujillo Presico,P
 TRUJILLO-PP-R4,NO APLICA,Norte,Norte Chico,Trujillo Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Trujillo Presico,P
-LIMA NORTE-CP-R1,NO APLICA,Sur,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
-LIMA NORTE-CP-R2,NO APLICA,Sur,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
-LIMA NORTE-CP-R3,NO APLICA,Sur,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
-LIMA NORTE-CP-R4,NO APLICA,Sur,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
-LIMA NORTE-PP-R1,NO APLICA,Sur,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
-LIMA NORTE-PP-R2,NO APLICA,Sur,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
-LIMA NORTE-PP-R4,NO APLICA,Sur,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
-LIMA NORTE-PP-R5,NO APLICA,Sur,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
-LIMA NORTE-PP-R6,NO APLICA,Sur,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
-LIMA SUR-CP-R1,NO APLICA,Sur,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
-LIMA SUR-CP-R2,NO APLICA,Sur,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
-LIMA SUR-CP-R3,NO APLICA,Sur,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
-LIMA SUR-PP-R3,NO APLICA,Sur,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
-LIMA SUR-PP-R4,NO APLICA,Sur,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
-LIMA SUR-PP-R5,NO APLICA,Sur,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
-LIMA SUR-PP-R6,NO APLICA,Sur,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
-LIMA SUR-PP-R8,NO APLICA,Sur,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
-HUAYCAN-PP-R1,NO APLICA,Sur,Lima,Huaycan Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huaycan Presico,P
+JAEN-PP-R1,NO APLICA,Norte,Nor Oriente,Jaen Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Jaen Presico,P
+LIMA NORTE-CP-R1,NO APLICA,Centro,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
+LIMA NORTE-CP-R2,NO APLICA,Centro,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
+LIMA NORTE-CP-R3,NO APLICA,Centro,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
+LIMA NORTE-CP-R4,NO APLICA,Centro,Lima,Lima Norte Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Norte Casita,C
+LIMA NORTE-PP-R1,NO APLICA,Centro,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
+LIMA NORTE-PP-R4,NO APLICA,Centro,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
+LIMA NORTE-PP-R5,NO APLICA,Centro,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
+LIMA NORTE-PP-R6,NO APLICA,Centro,Lima,Lima Norte Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Norte Presico,P
+LIMA SUR-CP-R1,NO APLICA,Centro,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
+LIMA SUR-CP-R2,NO APLICA,Centro,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
+LIMA SUR-CP-R3,NO APLICA,Centro,Lima,Lima Sur La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Lima Sur La Casita,C
+LIMA SUR-PP-R3,NO APLICA,Centro,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
+LIMA SUR-PP-R4,NO APLICA,Centro,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
+LIMA SUR-PP-R5,NO APLICA,Centro,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
+LIMA SUR-PP-R6,NO APLICA,Centro,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
+LIMA SUR-PP-R8,NO APLICA,Centro,Lima,Lima Sur Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Lima Sur Presico,P
+HUAYCAN-PP-R1,NO APLICA,Centro,Lima,Huaycan Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huaycan Presico,P
 AREQUIPA-CP-R1,NO APLICA,Sur,Sur,Arequipa La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Arequipa La Casita,C
 AREQUIPA-CP-R2,NO APLICA,Sur,Sur,Arequipa La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Arequipa La Casita,C
 AREQUIPA-CP-R3,NO APLICA,Sur,Sur,Arequipa La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Arequipa La Casita,C
@@ -316,15 +317,15 @@ CUSCO-CP-R2,NO APLICA,Sur,Sur Andino,Cusco La Casita,La Casita,La Casita,Présic
 CUSCO-CP-R3,NO APLICA,Sur,Sur Andino,Cusco La Casita,La Casita,La Casita,Présico LATAM,Peru,Sudamerica,Cusco La Casita,C
 HUANCAYO-PP-R1,NO APLICA,Sur,Sur Andino,Huancayo Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huancayo Presico,P
 HUANCAYO-PP-R2,NO APLICA,Sur,Sur Andino,Huancayo Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Huancayo Presico,P
-CAÑETE-PP-R1,NO APLICA,Sur,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
-CAÑETE-PP-R2,NO APLICA,Sur,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
-CAÑETE-PP-R3,NO APLICA,Sur,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
-CHINCHA-PP-R1,NO APLICA,Sur,Sur Chico,Chincha Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Chincha Presico,P
-ICA-PP-R1,NO APLICA,Sur,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
-ICA-PP-R2,NO APLICA,Sur,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
-ICA-PP-R3,NO APLICA,Sur,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
-ICA-PP-R4,NO APLICA,Sur,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
-NAZCA-PP-R1,NO APLICA,Sur,Sur Chico,Nazca Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Nazca Presico,P
+CAÑETE-PP-R1,NO APLICA,Centro,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
+CAÑETE-PP-R2,NO APLICA,Centro,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
+CAÑETE-PP-R3,NO APLICA,Centro,Sur Chico,Cañete Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Cañete Presico,P
+CHINCHA-PP-R1,NO APLICA,Centro,Sur Chico,Chincha Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Chincha Presico,P
+ICA-PP-R1,NO APLICA,Centro,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
+ICA-PP-R2,NO APLICA,Centro,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
+ICA-PP-R3,NO APLICA,Centro,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
+ICA-PP-R4,NO APLICA,Centro,Sur Chico,Ica Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Ica Presico,P
+NAZCA-PP-R1,NO APLICA,Centro,Sur Chico,Nazca Presico,Presico,Presico,Présico LATAM,Peru,Sudamerica,Nazca Presico,P
 MOROLEON-C-R1,Centro,Centro,Guanajuato,Moroleon Presico C-P,Presico,La Casita,Présico,México,México,Moroleon Presico,C
 MOROLEON-P-R2,Centro,Centro,Guanajuato,Moroleon Presico C-P,Presico,Presico MX,Présico,México,México,Moroleon Presico,P
 COLIMA-C-R1,Centro,Centro,Colima,Colima La Casita,La Casita,La Casita,Présico,México,México,Colima La Casita,C
@@ -365,7 +366,6 @@ PACHUCA-M-R3,Centro,Centro Oriente,Pachuca,Pachuca La Moderna LG-M,La Moderna,La
 PACHUCA-P-R2,Centro,Centro Oriente,Pachuca,Pachuca Presico,Presico,Presico MX,Présico,México,México,Pachuca Presico,P
 PACHUCA-P-R3,Centro,Centro Oriente,Pachuca,Pachuca Presico,Presico,Presico MX,Présico,México,México,Pachuca Presico,P
 PACHUCA-P-R5,Centro,Centro Oriente,Pachuca,Pachuca Presico,Presico,Presico MX,Présico,México,México,Pachuca Presico,P
-PACHUCA-P-R8,Centro,Centro Oriente,Pachuca,Pachuca Presico,Presico,Presico MX,Présico,México,México,Pachuca Presico,P
 PUEBLA-C-R1,Centro,Centro Oriente,Puebla,Puebla La Casita,La Casita,La Casita,Présico,México,México,Puebla La Casita,C
 PUEBLA-C-R2,Centro,Centro Oriente,Puebla,Puebla La Casita,La Casita,La Casita,Présico,México,México,Puebla La Casita,C
 PUEBLA-C-R3,Centro,Centro Oriente,Puebla,Puebla La Casita,La Casita,La Casita,Présico,México,México,Puebla La Casita,C
@@ -407,8 +407,6 @@ ZACATLAN-C-R1,Centro,Centro Oriente,Tlaxcala,Zacatlan Presico C-LG-P,Presico,La 
 ZACATLAN-C-R2,Centro,Centro Oriente,Tlaxcala,Zacatlan Presico C-LG-P,Presico,La Casita,Présico,México,México,Zacatlan Presico,C
 ZACATLAN-LG-R1,Centro,Centro Oriente,Tlaxcala,Zacatlan Presico C-LG-P,Presico,La Guerita,Présico,México,México,Zacatlan Presico,LG
 ZACATLAN-P-R1,Centro,Centro Oriente,Tlaxcala,Zacatlan Presico C-LG-P,Presico,Presico MX,Présico,México,México,Zacatlan Presico,P
-ZACATLAN-P-R2,Centro,Centro Oriente,Tlaxcala,Zacatlan Presico C-LG-P,Presico,Presico MX,Présico,México,México,Zacatlan Presico,P
-ACAPULCO-C-R1,Centro,Costa,Acapulco,Acapulco La Casita,La Casita,La Casita,Présico,México,México,Acapulco La Casita,C
 ACAPULCO-C-R3,Centro,Costa,Acapulco,Acapulco La Casita,La Casita,La Casita,Présico,México,México,Acapulco La Casita,C
 ACAPULCO-M-R1,Centro,Costa,Acapulco,Acapulco Presico M-P,Presico,La Moderna,Présico,México,México,Acapulco Presico,M
 ACAPULCO-M-R2,Centro,Costa,Acapulco,Acapulco Presico M-P,Presico,La Moderna,Présico,México,México,Acapulco Presico,M
@@ -507,7 +505,6 @@ SOTO LA MARINA-C-R1,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Gu
 SOTO LA MARINA-LG-R1,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Guerita,La Guerita,Présico,México,México,Soto La Marina La Guerita,LG
 SOTO LA MARINA-LG-R2,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Guerita,La Guerita,Présico,México,México,Soto La Marina La Guerita,LG
 MATEHUALA-C-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,La Casita,Présico,México,México,Matehuala PU,C
-MATEHUALA-P-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Presico MX,Présico,México,México,Matehuala PU,P
 MATEHUALA-P-R3,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Presico MX,Présico,México,México,Matehuala PU,P
 MATEHUALA-PU-R1,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Matehuala PU,PU
 MATEHUALA-PU-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Matehuala PU,PU
@@ -537,7 +534,6 @@ CIUDAD VICTORIA-P-R4,Norte,Noreste,Tamaulipas Norte,Ciudad Victoria Presico LG-P
 CIUDAD VICTORIA-PU-R1,Norte,Noreste,Tamaulipas Norte,Ciudad Victoria PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Ciudad Victoria PU,PU
 CIUDAD VICTORIA-PU-R2,Norte,Noreste,Tamaulipas Norte,Ciudad Victoria PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Ciudad Victoria PU,PU
 CIUDAD VICTORIA-PU-R3,Norte,Noreste,Tamaulipas Norte,Ciudad Victoria PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Ciudad Victoria PU,PU
-CIUDAD VICTORIA-PU-R4,Norte,Noreste,Tamaulipas Norte,Ciudad Victoria PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Ciudad Victoria PU,PU
 HUEJUTLA-P-R1,Norte,Noreste,Tamazunchale,Huejutla Presico P-PU,Presico,Presico MX,Présico,México,México,Huejutla Presico,P
 HUEJUTLA-P-R2,Norte,Noreste,Tamazunchale,Huejutla Presico P-PU,Presico,Presico MX,Présico,México,México,Huejutla Presico,P
 TANTOYUCA-PU-R1,Norte,Noreste,Tamazunchale,Huejutla Presico P-PU,Presico,Prestamos Unidos,Présico,México,México,Huejutla Presico,PU
@@ -590,9 +586,7 @@ MEOQUI-PU-R1,Norte,Norte,Chihuahua,Meoqui Presico P-PU,Presico,Prestamos Unidos,
 PARRAL-P-R1,Norte,Norte,Chihuahua,Meoqui Presico P-PU,Presico,Presico MX,Présico,México,México,Meoqui Presico,P
 DURANGO-C-R1,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
 DURANGO-C-R2,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
-DURANGO-C-R3,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
 DURANGO-LG-R1,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Guerita,Présico,México,México,Durango La Casita,LG
-DURANGO-LG-R2,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Guerita,Présico,México,México,Durango La Casita,LG
 DURANGO-LL-R1,Norte,Norte,Durango,Durango La Lupita,La Lupita,La Lupita,Présico,México,México,Durango La Lupita,LL
 DURANGO-LL-R2,Norte,Norte,Durango,Durango La Lupita,La Lupita,La Lupita,Présico,México,México,Durango La Lupita,LL
 DURANGO-LL-R3,Norte,Norte,Durango,Durango La Lupita,La Lupita,La Lupita,Présico,México,México,Durango La Lupita,LL
@@ -611,7 +605,6 @@ DURANGO-PU-R1,Norte,Norte,Durango,Durango PU,Prestamos Unidos,Prestamos Unidos,P
 DURANGO-PU-R2,Norte,Norte,Durango,Durango PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Durango PU,PU
 DURANGO-PU-R3,Norte,Norte,Durango,Durango PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Durango PU,PU
 DURANGO-PU-R4,Norte,Norte,Durango,Durango PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Durango PU,PU
-DURANGO-PU-R5,Norte,Norte,Durango,Durango PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Durango PU,PU
 LINARES-C-R2,Norte,Norte,Linares,Linares La Casita C-M,La Casita,La Casita,Présico,México,México,Linares La Casita,C
 LINARES-C-R3,Norte,Norte,Linares,Linares La Casita C-M,La Casita,La Casita,Présico,México,México,Linares La Casita,C
 LINARES-C-R4,Norte,Norte,Linares,Linares La Casita C-M,La Casita,La Casita,Présico,México,México,Linares La Casita,C
@@ -652,7 +645,6 @@ RIO GRANDE-PU-R1,Norte,Norte,Zacatecas,Rio Grande La Moderna M-PU,La Moderna,Pre
 RIO GRANDE-PU-R2,Norte,Norte,Zacatecas,Rio Grande La Moderna M-PU,La Moderna,Prestamos Unidos,Présico,México,México,Rio Grande La Moderna,PU
 ZACATECAS-C-R1,Norte,Norte,Zacatecas,Zacatecas La Casita,La Casita,La Casita,Présico,México,México,Zacatecas La Casita,C
 ZACATECAS-C-R2,Norte,Norte,Zacatecas,Zacatecas La Casita,La Casita,La Casita,Présico,México,México,Zacatecas La Casita,C
-ZACATECAS-C-R3,Norte,Norte,Zacatecas,Zacatecas La Casita,La Casita,La Casita,Présico,México,México,Zacatecas La Casita,C
 ZACATECAS-LL-R1,Norte,Norte,Zacatecas,Zacatecas La Moderna LL-M,La Moderna,La Lupita,Présico,México,México,Zacatecas La Moderna,LL
 ZACATECAS-M-R1,Norte,Norte,Zacatecas,Zacatecas La Moderna LL-M,La Moderna,La Moderna,Présico,México,México,Zacatecas La Moderna,M
 ZACATECAS-M-R2,Norte,Norte,Zacatecas,Zacatecas La Moderna LL-M,La Moderna,La Moderna,Présico,México,México,Zacatecas La Moderna,M
@@ -669,8 +661,8 @@ SAN JOSE DEL CABO-LL-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Casita C-
 SAN JOSE DEL CABO-M-R1,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Moderna,La Moderna,La Moderna,Présico,México,México,San Jose Del Cabo La Moderna,M
 SAN JOSE DEL CABO-M-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Moderna,La Moderna,La Moderna,Présico,México,México,San Jose Del Cabo La Moderna,M
 SAN JOSE DEL CABO-P-R1,Norte,Norte Pacifico,Cabo,San Jose Del Cabo Presico P-PU,Presico,Presico MX,Présico,México,México,San Jose Del Cabo Presico,P
-SAN JOSE DEL CABO-P-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo Presico P-PU,Presico,Presico MX,Présico,México,México,San Jose Del Cabo Presico,P
 SAN JOSE DEL CABO-PU-R1,Norte,Norte Pacifico,Cabo,San Jose Del Cabo Presico P-PU,Presico,Prestamos Unidos,Présico,México,México,San Jose Del Cabo Presico,PU
+CABO SAN LUCAS-P-R1,Norte,Norte Pacifico,Cabo,San Lucas Presico,Presico,Presico MX,Présico,México,México,San Lucas Presico,P
 CONSTITUCION-C-R1,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion La Casita C-LG,La Casita,La Casita,Présico,México,México,Ciudad Constitucion La Casita,C
 CONSTITUCION-C-R2,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion La Casita C-LG,La Casita,La Casita,Présico,México,México,Ciudad Constitucion La Casita,C
 CONSTITUCION-C-R3,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion La Casita C-LG,La Casita,La Casita,Présico,México,México,Ciudad Constitucion La Casita,C
@@ -685,6 +677,7 @@ CONSTITUCION-PU-R1,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion 
 CONSTITUCION-PU-R2,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion Presico P-PU,Presico,Prestamos Unidos,Présico,México,México,Ciudad Constitucion Presico,PU
 CONSTITUCION-PU-R3,Norte,Norte Pacifico,Ciudad Constitucion,Ciudad Constitucion Presico P-PU,Presico,Prestamos Unidos,Présico,México,México,Ciudad Constitucion Presico,PU
 VIZCAINO-P-R1,Norte,Norte Pacifico,Ciudad Constitucion,Vizcaino Presico,Presico,Presico MX,Présico,México,México,Vizcaino Presico,P
+VIZCAINO-P-R2,Norte,Norte Pacifico,Ciudad Constitucion,Vizcaino Presico,Presico,Presico MX,Présico,México,México,Vizcaino Presico,P
 ENSENADA-C-R1,Norte,Norte Pacifico,Ensenada,Ensenada Presico C-M-P,Presico,La Casita,Présico,México,México,Ensenada Presico,C
 ENSENADA-C-R2,Norte,Norte Pacifico,Ensenada,Ensenada Presico C-M-P,Presico,La Casita,Présico,México,México,Ensenada Presico,C
 ENSENADA-M-R1,Norte,Norte Pacifico,Ensenada,Ensenada Presico C-M-P,Presico,La Moderna,Présico,México,México,Ensenada Presico,M
@@ -865,13 +858,13 @@ ORIZABA-C-R3,Sur,Golfo,Orizaba,Orizaba La Casita C-P,La Casita,La Casita,Présic
 ORIZABA-P-R1,Sur,Golfo,Orizaba,Orizaba La Casita C-P,La Casita,Presico MX,Présico,México,México,Orizaba La Casita,P
 ORIZABA-P-R2,Sur,Golfo,Orizaba,Orizaba La Casita C-P,La Casita,Presico MX,Présico,México,México,Orizaba La Casita,P
 ORIZABA-P-R3,Sur,Golfo,Orizaba,Orizaba La Casita C-P,La Casita,Presico MX,Présico,México,México,Orizaba La Casita,P
-ORIZABA-M-R1,Sur,Golfo,Orizaba,Orizaba La Moderna,La Casita,La Moderna,Présico,México,México,Orizaba La Moderna,M
+ORIZABA-M-R1,Sur,Golfo,Orizaba,Orizaba La Moderna LG-M,La Casita,La Moderna,Présico,México,México,Orizaba La Moderna,M
+ORIZABA-LG-R1,Sur,Golfo,Orizaba,Orizaba La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Orizaba La Moderna,LG
 POZA RICA-C-R1,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
-POZA RICA-C-R2,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
 POZA RICA-C-R3,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
 POZA RICA-C-R4,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
-POZA RICA-M-R1,Sur,Golfo,Poza Rica,Poza Rica La Moderna,La Moderna,La Moderna,Présico,México,México,Poza Rica La Moderna,M
-POZA RICA-M-R3,Sur,Golfo,Poza Rica,Poza Rica La Moderna,La Moderna,La Moderna,Présico,México,México,Poza Rica La Moderna,M
+POZA RICA-M-R1,Sur,Golfo,Poza Rica,Poza Rica La Moderna LL-M,La Moderna,La Moderna,Présico,México,México,Poza Rica La Moderna,M
+POZA RICA-M-R3,Sur,Golfo,Poza Rica,Poza Rica La Moderna LL-M,La Moderna,La Moderna,Présico,México,México,Poza Rica La Moderna,M
 POZA RICA-LG-R1,Sur,Golfo,Poza Rica,Poza Rica Presico LG-P,Presico,La Guerita,Présico,México,México,Poza Rica Presico,LG
 POZA RICA-P-R1,Sur,Golfo,Poza Rica,Poza Rica Presico LG-P,Presico,Presico MX,Présico,México,México,Poza Rica Presico,P
 POZA RICA-P-R2,Sur,Golfo,Poza Rica,Poza Rica Presico LG-P,Presico,Presico MX,Présico,México,México,Poza Rica Presico,P
@@ -879,6 +872,7 @@ POZA RICA-P-R4,Sur,Golfo,Poza Rica,Poza Rica Presico LG-P,Presico,Presico MX,Pr�
 POZA RICA-PU-R1,Sur,Golfo,Poza Rica,Poza Rica PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Poza Rica PU,PU
 POZA RICA-PU-R2,Sur,Golfo,Poza Rica,Poza Rica PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Poza Rica PU,PU
 POZA RICA-PU-R3,Sur,Golfo,Poza Rica,Poza Rica PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Poza Rica PU,PU
+POZA RICA-LL-R1,Sur,Golfo,Poza Rica,Poza Rica La Moderna LL-M,La Moderna,La Lupita,Présico,México,México,Poza Rica La Moderna,LL
 SAN ANDRES-C-R1,Sur,Golfo,San Andres,San Andres La Casita C-PU,La Casita,La Casita,Présico,México,México,San Andres La Casita,C
 SAN ANDRES-C-R3,Sur,Golfo,San Andres,San Andres La Casita C-PU,La Casita,La Casita,Présico,México,México,San Andres La Casita,C
 SAN ANDRES-PU-R1,Sur,Golfo,San Andres,San Andres La Casita C-PU,La Casita,Prestamos Unidos,Présico,México,México,San Andres La Casita,PU
@@ -888,7 +882,6 @@ SAN ANDRES-LG-R1,Sur,Golfo,San Andres,San Andres La Moderna LG-M,La Moderna,La G
 SAN ANDRES-M-R1,Sur,Golfo,San Andres,San Andres La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,San Andres La Moderna,M
 SAN ANDRES-M-R2,Sur,Golfo,San Andres,San Andres La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,San Andres La Moderna,M
 SAN ANDRES-P-R1,Sur,Golfo,San Andres,San Andres Presico,Presico,Presico MX,Présico,México,México,San Andres Presico,P
-SAN ANDRES-P-R2,Sur,Golfo,San Andres,San Andres Presico,Presico,Presico MX,Présico,México,México,San Andres Presico,P
 SAN ANDRES-P-R3,Sur,Golfo,San Andres,San Andres Presico,Presico,Presico MX,Présico,México,México,San Andres Presico,P
 SAN ANDRES-P-R4,Sur,Golfo,San Andres,San Andres Presico,Presico,Presico MX,Présico,México,México,San Andres Presico,P
 TUXTEPEC-C-R1,Sur,Golfo,San Andres,Tuxtepec Presico C-LG-P,Presico,La Casita,Présico,México,México,Tuxtepec Presico,C
