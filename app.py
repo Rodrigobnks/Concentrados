@@ -20,7 +20,9 @@ SUM_COLUMNS = [
     "CO Renov $", "CO Nuevos $", "CO Reconquista $",
     "CO Renov #", "CO Nuevos #", "CO Reconquista #", "Nunca Abonada",
 ]
-MAX_COLUMNS = ["Coord Principal", "Coord Nueva", "Cambio de Coordinadora"]
+MAX_COLUMNS = [
+    "Coord Principal", "Coord Nueva", "Cambio de Coordinadora", "dias_de_atraso",
+]
 
 CANONICAL_COLUMNS = [
     "Territorio", "Subdireccion", "Zona", "Sucursal", "Unidad de negocio",
@@ -256,6 +258,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     common_rename = {
         "Clientes Totales": "Clientes totales", "FP Al Corriente": "FP al corriente",
         "FP Atraso": "FP Falta", "PP Al Corriente": "PP al corriente", "PP Atraso": "PP Falta",
+        "dias_de_atraso": "Máx. días de atraso",
     }
     result = result.rename(columns=common_rename)
 
@@ -272,7 +275,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         ).astype(int)
         order = [
             "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
-            "Clientes totales", "Clientes al corriente", "Faltas", "Cartera Total", "Cartera sin atrasos",
+            "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso", "Cartera Total", "Cartera sin atrasos",
             "Calidad", "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
             "CO Reconquista #", "Nunca Abonada", "Máx. de Coordinadora", "Máx. de Coord Nueva",
             "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
@@ -302,7 +305,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["País"] = result["Pais"]
         order = [
             "Fecha corte", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
-            "Clientes totales", "Clientes al corriente", "Faltas", "Cartera Total", "Cartera sin atrasos", "Calidad",
+            "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso", "Cartera Total", "Cartera sin atrasos", "Calidad",
             "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
             "CO Reconquista #", "Nunca Abonada", "Coord Totales", "Coord prod", "Coord en desarrollo",
             "Coord impro", "Cambio Coordinadora", "Coord Nueva", "País",
