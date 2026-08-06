@@ -35,6 +35,9 @@ CANONICAL_COLUMNS = [
     "Cartera sin atrasos", "Coord Principal", "CO Renov $", "CO Nuevos $",
     "CO Reconquista $", "CO Renov #", "CO Nuevos #", "CO Reconquista #",
     "Coord Nueva", "Cambio de Coordinadora", "Nunca Abonada",
+    "Fecha de Corte", "Distribuidora", "Coordinacion", "Número",
+    "Clientes con Compras Pendientes", "Clientes al Corriente", "Clientes en atraso",
+    "Mora Máxima", "Colocado Neto VA",
 ]
 
 
@@ -99,6 +102,12 @@ def numeric(df: pd.DataFrame, column: str) -> pd.Series:
     if column not in df.columns:
         return pd.Series(0.0, index=df.index)
     return pd.to_numeric(df[column], errors="coerce").fillna(0)
+
+
+def column_name(df: pd.DataFrame, *candidates: str) -> str | None:
+    """Encuentra una columna sin depender de acentos, mayúsculas o espacios."""
+    available = {name_key(column): column for column in df.columns}
+    return next((available.get(name_key(candidate)) for candidate in candidates), None)
 
 
 def excel_datetime(values: pd.Series) -> pd.Series:
@@ -227,6 +236,50 @@ def prepare_base(raw: pd.DataFrame, profile: str, structure: pd.DataFrame) -> pd
     return base
 
 
+def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
+    """Normaliza la cartera Vales; no requiere ni consulta la estructura."""
+    result = normalize_frame(raw)
+    source_columns = {
+        "Corte": ("Fecha de Corte",),
+        "Distribuidora": ("Distribuidora",),
+        "Clientes Totales": ("Clientes con Compras Pendientes",),
+        "Clientes al corriente": ("Clientes al Corriente",),
+        "Faltas": ("Clientes en atraso",),
+        "Mora Máxima": ("Mora Máxima", "Mora Maxima"),
+        "Cartera Total": ("Colocado Neto VA",),
+        "ruta": ("Coordinacion", "Coordinación"),
+    }
+    missing = [
+        target for target, candidates in source_columns.items()
+        if column_name(result, *candidates) is None
+    ]
+    if missing:
+        raise ValueError(
+            "Faltan columnas de la cartera Vales: " + ", ".join(missing)
+        )
+
+    for target, candidates in source_columns.items():
+        source = column_name(result, *candidates)
+        result[target] = result[source]
+
+    for dimension in ["Marca", "Subdireccion", "Zona", "Sucursal"]:
+        if dimension not in result.columns:
+            result[dimension] = ""
+
+    result["Corte"] = excel_datetime(result["Corte"])
+    for measure in [
+        "Clientes Totales", "Clientes al corriente", "Faltas", "Mora Máxima", "Cartera Total",
+    ]:
+        result[measure] = numeric(result, measure)
+
+    # El archivo concentra a cada distribuidora en una fila: si tiene clientes al
+    # corriente, se toma su Colocado Neto VA como cartera sin atrasos.
+    result["Cartera sin atrasos"] = np.where(
+        result["Clientes al corriente"].gt(0), result["Cartera Total"], 0,
+    )
+    return result
+
+
 def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     if profile == "LATAM":
         dims = ["Corte", "Pais", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
@@ -268,6 +321,12 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
         result["Máx. de Coordinadora"] = coordinator_change
         result["Máx. de Coord Nueva"] = new_coordinator
+        result["Cambio Coordinadora"] = coordinator_change
+        legacy_columns = [
+            column for column in result.columns
+            if "de Coordinadora" in column or "de Coord Nueva" in column
+        ]
+        result = result.drop(columns=legacy_columns)
         result["Coord prod"] = productive.astype(int)
         result["Coord en desarrollo"] = developing.astype(int)
         result["Coord impro"] = (
@@ -279,6 +338,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
             "Calidad", "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
             "CO Reconquista #", "Nunca Abonada", "Máx. de Coordinadora", "Máx. de Coord Nueva",
             "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
+            "Cambio Coordinadora", "Coord Nueva",
         ]
     else:
         result["Clientes totales"] = (
@@ -311,6 +371,38 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
             "Coord impro", "Cambio Coordinadora", "Coord Nueva", "País",
         ]
     return result[[c for c in order if c in result.columns]]
+
+
+def build_concentrado_vales(base: pd.DataFrame) -> pd.DataFrame:
+    dims = ["Corte", "Marca", "Subdireccion", "Zona", "Sucursal", "ruta", "Distribuidora"]
+    measures = [
+        "Clientes Totales", "Clientes al corriente", "Faltas", "Mora Máxima",
+        "Cartera Total", "Cartera sin atrasos",
+    ]
+    missing = [column for column in [*dims, *measures] if column not in base.columns]
+    if missing:
+        raise ValueError("No se puede formar el concentrado Vales. Faltan: " + ", ".join(missing))
+
+    work = base.copy()
+    for column in measures:
+        work[column] = numeric(work, column)
+    aggregation = {column: "sum" for column in measures if column != "Mora Máxima"}
+    aggregation["Mora Máxima"] = "max"
+    result = work.groupby(dims, dropna=False, sort=False).agg(aggregation).reset_index()
+    result["Calidad"] = np.divide(
+        result["Cartera sin atrasos"], result["Cartera Total"],
+        out=np.zeros(len(result), dtype=float), where=result["Cartera Total"].ne(0),
+    )
+    result = result.rename(columns={
+        "Clientes Totales": "Clientes totales",
+        "Mora Máxima": "Máx. días de atraso",
+    })
+    order = [
+        "Corte", "Marca", "Subdireccion", "Zona", "Sucursal", "ruta", "Distribuidora",
+        "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso",
+        "Cartera Total", "Cartera sin atrasos", "Calidad",
+    ]
+    return result[order]
 
 
 def metric_total(df: pd.DataFrame, column: str) -> float:
@@ -354,6 +446,7 @@ def show_detail_cards(df: pd.DataFrame) -> None:
     ):
         column.metric(label, f"{values[label]:,.0f}")
 
+
     st.markdown("#### Indicadores de coordinadoras")
     coordinator_columns = st.columns(5)
     for column, label in zip(
@@ -366,6 +459,19 @@ def show_detail_cards(df: pd.DataFrame) -> None:
             "Coordinadoras",
         ],
     ):
+        column.metric(label, f"{values[label]:,.0f}")
+
+
+def show_vales_cards(df: pd.DataFrame) -> None:
+    st.markdown("#### Indicadores de distribuidoras")
+    values = {
+        "Distribuidoras": len(df),
+        "Clientes al corriente": metric_total(df, "Clientes al corriente"),
+        "Clientes en atraso": metric_total(df, "Faltas"),
+        "Clientes totales": metric_total(df, "Clientes totales"),
+    }
+    columns = st.columns(4)
+    for column, label in zip(columns, values):
         column.metric(label, f"{values[label]:,.0f}")
 
 
@@ -387,19 +493,22 @@ def excel_bytes(df: pd.DataFrame) -> bytes:
 
 
 def main() -> None:
-    st.title("Concentrados de cartera · LATAM y Presico")
-    st.caption("Selecciona el proceso, carga el reporte diario o el libro formulado y descarga el concentrado.")
+    st.title("Concentrados de cartera · LATAM, Presico y Vales")
+    st.caption("Selecciona el proceso, carga el reporte y descarga el concentrado.")
 
     st.subheader("1. Tipo de concentrado")
     profile = st.radio(
         "Selecciona el origen de la cartera",
-        options=["LATAM", "Presico"], horizontal=True, label_visibility="collapsed",
+        options=["LATAM", "Presico", "Vales"], horizontal=True, label_visibility="collapsed",
     )
 
     st.subheader("2. Archivo")
     uploaded = st.file_uploader(
         f"Reporte de {profile}", type=["xlsb", "xlsx"], key=f"uploader_{profile}",
-        help="Puede ser el reporte diario con Hoja1 o un libro formulado con Base.",
+        help=(
+            "Para Vales carga el archivo con la hoja de cartera. "
+            "Para LATAM o Presico puede ser el reporte diario o un libro formulado con Base."
+        ),
     )
     if uploaded is None:
         st.info(f"Selecciona el archivo de {profile} para continuar.")
@@ -425,26 +534,36 @@ def main() -> None:
         st.caption(f"Hoja detectada: {source_sheet}")
 
     with st.sidebar:
-        st.header("Reglas de coordinadoras")
-        st.caption("Productiva: 21 o más clientes totales y calidad mínima de 60%.")
-        st.caption("En desarrollo: menos de 21 clientes totales y calidad mínima de 60%.")
+        st.header("Reglas de Vales" if profile == "Vales" else "Reglas de coordinadoras")
+        if profile == "Vales":
+            st.caption("La cartera sin atrasos usa el Colocado Neto VA cuando hay clientes al corriente.")
+        else:
+            st.caption("Productiva: 21 o más clientes totales y calidad mínima de 60%.")
+            st.caption("En desarrollo: menos de 21 clientes totales y calidad mínima de 60%.")
 
     try:
         with st.spinner(f"Procesando {profile}. En archivos grandes puede tardar unos minutos…"):
             raw = read_sheet(content, suffix, source_sheet)
-            base = prepare_base(raw, profile, load_structure())
-            concentrado = build_concentrado(base, profile)
+            if profile == "Vales":
+                base = prepare_vales(raw)
+                concentrado = build_concentrado_vales(base)
+            else:
+                base = prepare_base(raw, profile, load_structure())
+                concentrado = build_concentrado(base, profile)
     except Exception as exc:
         st.error(str(exc))
         st.info("Verifica el tipo LATAM/Presico y la hoja seleccionada.")
         st.stop()
 
-    st.success(f"{profile}: {len(base):,} registros procesados · {len(concentrado):,} localidades")
+    group_label = "distribuidoras" if profile == "Vales" else "localidades"
+    st.success(f"{profile}: {len(base):,} registros procesados · {len(concentrado):,} {group_label}")
 
     filter_columns = [
-        c for c in ["País", "Pais", "Territorio", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta"]
+        c for c in ["Marca", "País", "Pais", "Territorio", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta"]
         if c in concentrado.columns
     ]
+    if profile == "Vales" and "Distribuidora" in concentrado.columns:
+        filter_columns.append("Distribuidora")
     filtered = concentrado
     with st.sidebar:
         st.header("Filtros")
@@ -466,11 +585,14 @@ def main() -> None:
     quality = clean_portfolio / portfolio if portfolio else 0
 
     c1, c2, c3 = st.columns(3)
-    c1.metric("Localidades", f"{len(filtered):,}")
+    c1.metric("Distribuidoras" if profile == "Vales" else "Localidades", f"{len(filtered):,}")
     c2.metric("Cartera al corriente", f"${clean_portfolio:,.0f}")
     c3.metric("Calidad", f"{quality:.1%}")
 
-    show_detail_cards(filtered)
+    if profile == "Vales":
+        show_vales_cards(filtered)
+    else:
+        show_detail_cards(filtered)
 
     tab_names = ["Concentrado", "Resumen"]
     if profile == "LATAM":
