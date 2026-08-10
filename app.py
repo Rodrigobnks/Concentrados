@@ -14,7 +14,7 @@ from openpyxl.styles import Font, PatternFill
 st.set_page_config(page_title="Concentrados de cartera", page_icon="📊", layout="wide")
 
 SUM_COLUMNS = [
-    "Clientes Totales", "Clientes al corriente", "Faltas",
+    "Clientes Totales", "Clientes al corriente", "Faltas", "Distribuidoras al corriente",
     "FP", "FP Al Corriente", "FP Atraso", "PP", "PP Al Corriente", "PP Atraso",
     "Cartera Total", "Cartera sin atrasos",
     "CO Renov $", "CO Nuevos $", "CO Reconquista $",
@@ -244,7 +244,8 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
         "Distribuidora": ("Distribuidora",),
         "Clientes Totales": ("Clientes con Compras Pendientes",),
         "Clientes al corriente": ("Clientes al Corriente",),
-        "Faltas": ("Clientes en atraso",),
+        "Status": ("Status",),
+        "Status Mora VA": ("Status Mora VA",),
         "Mora Máxima": ("Mora Máxima", "Mora Maxima"),
         "Cartera Total": ("Colocado Neto VA",),
         "ruta": ("Coordinacion", "Coordinación"),
@@ -272,10 +273,22 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
     ]:
         result[measure] = numeric(result, measure)
 
-    # El archivo concentra a cada distribuidora en una fila: si tiene clientes al
-    # corriente, se toma su Colocado Neto VA como cartera sin atrasos.
+    status = result["Status"].fillna("").astype(str).str.strip()
+    is_restructura = status.map(name_key).eq("restructura")
+    status_mora = result["Status Mora VA"]
+    status_mora_text = status_mora.fillna("").astype(str).str.strip()
+    blank_status_mora = status_mora.isna() | status_mora_text.isin(["", "nan", "None"])
+    status_mora_is_one = pd.to_numeric(status_mora, errors="coerce").eq(1)
+    clientes_reportados = numeric(result, "Clientes al corriente")
+
+    # Distribuidoras al corriente: filas con Status Mora VA vacío.
+    result["Distribuidoras al corriente"] = blank_status_mora.astype(int)
+    # Clientes al corriente excluye Restructura; esas filas son las faltas.
+    result["Clientes al corriente"] = np.where(~is_restructura, clientes_reportados, 0)
+    result["Faltas"] = np.where(is_restructura, clientes_reportados, 0)
+    # Cartera al corriente: Colocado Neto VA excepto las filas con Status Mora VA = 1.
     result["Cartera sin atrasos"] = np.where(
-        result["Clientes al corriente"].gt(0), result["Cartera Total"], 0,
+        ~status_mora_is_one, result["Cartera Total"], 0,
     )
     return result
 
@@ -376,6 +389,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 def build_concentrado_vales(base: pd.DataFrame) -> pd.DataFrame:
     dims = ["Corte", "Marca", "Subdireccion", "Zona", "Sucursal", "ruta", "Distribuidora"]
     measures = [
+        "Distribuidoras al corriente",
         "Clientes Totales", "Clientes al corriente", "Faltas", "Mora Máxima",
         "Cartera Total", "Cartera sin atrasos",
     ]
@@ -399,6 +413,7 @@ def build_concentrado_vales(base: pd.DataFrame) -> pd.DataFrame:
     })
     order = [
         "Corte", "Marca", "Subdireccion", "Zona", "Sucursal", "ruta", "Distribuidora",
+        "Distribuidoras al corriente",
         "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso",
         "Cartera Total", "Cartera sin atrasos", "Calidad",
     ]
@@ -465,7 +480,7 @@ def show_detail_cards(df: pd.DataFrame) -> None:
 def show_vales_cards(df: pd.DataFrame) -> None:
     st.markdown("#### Indicadores de distribuidoras")
     values = {
-        "Distribuidoras": len(df),
+        "Distribuidoras al corriente": metric_total(df, "Distribuidoras al corriente"),
         "Clientes al corriente": metric_total(df, "Clientes al corriente"),
         "Clientes en atraso": metric_total(df, "Faltas"),
         "Clientes totales": metric_total(df, "Clientes totales"),
@@ -536,7 +551,7 @@ def main() -> None:
     with st.sidebar:
         st.header("Reglas de Vales" if profile == "Vales" else "Reglas de coordinadoras")
         if profile == "Vales":
-            st.caption("La cartera sin atrasos usa el Colocado Neto VA cuando hay clientes al corriente.")
+            st.caption("Distribuidoras al corriente: Status Mora VA vacío. Cartera al corriente: Colocado Neto VA con Status Mora VA distinto de 1.")
         else:
             st.caption("Productiva: 21 o más clientes totales y calidad mínima de 60%.")
             st.caption("En desarrollo: menos de 21 clientes totales y calidad mínima de 60%.")
@@ -584,8 +599,16 @@ def main() -> None:
     clean_portfolio = filtered.get("Cartera sin atrasos", pd.Series(dtype=float)).sum()
     quality = clean_portfolio / portfolio if portfolio else 0
 
+    group_count = (
+        metric_total(filtered, "Distribuidoras al corriente")
+        if profile == "Vales" else len(filtered)
+    )
+
     c1, c2, c3 = st.columns(3)
-    c1.metric("Distribuidoras" if profile == "Vales" else "Localidades", f"{len(filtered):,}")
+    c1.metric(
+        "Distribuidoras al corriente" if profile == "Vales" else "Localidades",
+        f"{group_count:,.0f}" if profile == "Vales" else f"{group_count:,}",
+    )
     c2.metric("Cartera al corriente", f"${clean_portfolio:,.0f}")
     c3.metric("Calidad", f"{quality:.1%}")
 
