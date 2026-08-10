@@ -244,6 +244,7 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
         "Distribuidora": ("Distribuidora",),
         "Clientes Totales": ("Clientes con Compras Pendientes",),
         "Clientes al corriente": ("Clientes al Corriente",),
+        "Faltas": ("Clientes en atraso",),
         "Status": ("Status",),
         "Status Mora VA": ("Status Mora VA",),
         "Mora Máxima": ("Mora Máxima", "Mora Maxima"),
@@ -280,12 +281,13 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
     blank_status_mora = status_mora.isna() | status_mora_text.isin(["", "nan", "None"])
     status_mora_is_one = pd.to_numeric(status_mora, errors="coerce").eq(1)
     clientes_reportados = numeric(result, "Clientes al corriente")
+    clientes_en_atraso = numeric(result, "Faltas")
 
     # Distribuidoras al corriente: filas con Status Mora VA vacío.
     result["Distribuidoras al corriente"] = blank_status_mora.astype(int)
-    # Clientes al corriente excluye Restructura; esas filas son las faltas.
+    # Clientes al corriente y faltas excluyen las filas con Status = Restructura.
     result["Clientes al corriente"] = np.where(~is_restructura, clientes_reportados, 0)
-    result["Faltas"] = np.where(is_restructura, clientes_reportados, 0)
+    result["Faltas"] = np.where(~is_restructura, clientes_en_atraso, 0)
     # Cartera al corriente: Colocado Neto VA excepto las filas con Status Mora VA = 1.
     result["Cartera sin atrasos"] = np.where(
         ~status_mora_is_one, result["Cartera Total"], 0,
@@ -599,18 +601,28 @@ def main() -> None:
     clean_portfolio = filtered.get("Cartera sin atrasos", pd.Series(dtype=float)).sum()
     quality = clean_portfolio / portfolio if portfolio else 0
 
-    group_count = (
-        metric_total(filtered, "Distribuidoras al corriente")
-        if profile == "Vales" else len(filtered)
-    )
-
-    c1, c2, c3 = st.columns(3)
-    c1.metric(
-        "Distribuidoras al corriente" if profile == "Vales" else "Localidades",
-        f"{group_count:,.0f}" if profile == "Vales" else f"{group_count:,}",
-    )
-    c2.metric("Cartera al corriente", f"${clean_portfolio:,.0f}")
-    c3.metric("Calidad", f"{quality:.1%}")
+    if profile == "Vales":
+        top_metrics = [
+            ("Distribuidoras al corriente", metric_total(filtered, "Distribuidoras al corriente")),
+            ("Clientes al corriente", current),
+            ("Distribuidoras totales", len(filtered)),
+            ("Cartera total", portfolio),
+            ("Cartera al corriente", clean_portfolio),
+            ("Calidad", quality),
+        ]
+        metric_columns = st.columns(len(top_metrics))
+        for column, (label, value) in zip(metric_columns, top_metrics):
+            if label.startswith("Cartera"):
+                column.metric(label, f"${value:,.0f}")
+            elif label == "Calidad":
+                column.metric(label, f"{value:.1%}")
+            else:
+                column.metric(label, f"{value:,.0f}")
+    else:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Localidades", f"{len(filtered):,}")
+        c2.metric("Cartera al corriente", f"${clean_portfolio:,.0f}")
+        c3.metric("Calidad", f"{quality:.1%}")
 
     if profile == "Vales":
         show_vales_cards(filtered)
