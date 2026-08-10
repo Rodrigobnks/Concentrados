@@ -505,6 +505,7 @@ SOTO LA MARINA-C-R1,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Gu
 SOTO LA MARINA-LG-R1,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Guerita,La Guerita,Présico,México,México,Soto La Marina La Guerita,LG
 SOTO LA MARINA-LG-R2,Norte,Noreste,Matamoros,Soto La Marina La Guerita C-LG,La Guerita,La Guerita,Présico,México,México,Soto La Marina La Guerita,LG
 MATEHUALA-C-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,La Casita,Présico,México,México,Matehuala PU,C
+MATEHUALA-P-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Presico MX,Présico,México,México,Matehuala PU,P
 MATEHUALA-P-R3,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Presico MX,Présico,México,México,Matehuala PU,P
 MATEHUALA-PU-R1,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Matehuala PU,PU
 MATEHUALA-PU-R2,Norte,Noreste,San Luis,Matehuala PU C-P-PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Matehuala PU,PU
@@ -586,6 +587,7 @@ MEOQUI-PU-R1,Norte,Norte,Chihuahua,Meoqui Presico P-PU,Presico,Prestamos Unidos,
 PARRAL-P-R1,Norte,Norte,Chihuahua,Meoqui Presico P-PU,Presico,Presico MX,Présico,México,México,Meoqui Presico,P
 DURANGO-C-R1,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
 DURANGO-C-R2,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
+DURANGO-C-R3,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Casita,Présico,México,México,Durango La Casita,C
 DURANGO-LG-R1,Norte,Norte,Durango,Durango La Casita C-LG,La Casita,La Guerita,Présico,México,México,Durango La Casita,LG
 DURANGO-LL-R1,Norte,Norte,Durango,Durango La Lupita,La Lupita,La Lupita,Présico,México,México,Durango La Lupita,LL
 DURANGO-LL-R2,Norte,Norte,Durango,Durango La Lupita,La Lupita,La Lupita,Présico,México,México,Durango La Lupita,LL
@@ -657,6 +659,7 @@ ZACATECAS-PU-R1,Norte,Norte,Zacatecas,Zacatecas PU,Prestamos Unidos,Prestamos Un
 ZACATECAS-PU-R2,Norte,Norte,Zacatecas,Zacatecas PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Zacatecas PU,PU
 ZACATECAS-PU-R3,Norte,Norte,Zacatecas,Zacatecas PU,Prestamos Unidos,Prestamos Unidos,Présico,México,México,Zacatecas PU,PU
 SAN JOSE DEL CABO-C-R1,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Casita C-LL,La Casita,La Casita,Présico,México,México,San Jose Del Cabo La Casita,C
+SAN JOSE DEL CABO-C-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Casita C-LL,La Casita,La Casita,Présico,México,México,San Jose Del Cabo La Casita,C
 SAN JOSE DEL CABO-LL-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Casita C-LL,La Casita,La Lupita,Présico,México,México,San Jose Del Cabo La Casita,LL
 SAN JOSE DEL CABO-M-R1,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Moderna,La Moderna,La Moderna,Présico,México,México,San Jose Del Cabo La Moderna,M
 SAN JOSE DEL CABO-M-R2,Norte,Norte Pacifico,Cabo,San Jose Del Cabo La Moderna,La Moderna,La Moderna,Présico,México,México,San Jose Del Cabo La Moderna,M
@@ -767,14 +770,14 @@ NAVOJOA-P-R2,Norte,Pacifico Norte,Navojoa,Navojoa Presico LL-P,Presico,Presico M
 NAVOJOA-P-R3,Norte,Pacifico Norte,Navojoa,Navojoa Presico LL-P,Presico,Presico MX,Présico,México,México,Navojoa Presico,P
 OBREGON-C-R4,Norte,Pacifico Norte,Obregon,Obregon La Casita C-PU,La Casita,La Casita,Présico,México,México,Obregon La Casita,C
 OBREGON-C-R5,Norte,Pacifico Norte,Obregon,Obregon La Casita C-PU,La Casita,La Casita,Présico,México,México,Obregon La Casita,C
-OBREGON-C-R6,Norte,Pacifico Norte,Obregon,Obregon La Casita C-PU,La Casita,La Casita,Présico,México,México,Obregon La Casita,C
+OBREGON-C-R6,Norte,Pacifico Norte,Obregon,Empalme C-LL,La Casita,La Casita,Présico,México,México,Empalme,C
 OBREGON-C-R8,Norte,Pacifico Norte,Obregon,Obregon La Casita C-PU,La Casita,La Casita,Présico,México,México,Obregon La Casita,C
 OBREGON-LG-R1,Norte,Pacifico Norte,Obregon,Obregon La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Obregon La Moderna,LG
 OBREGON-LG-R2,Norte,Pacifico Norte,Obregon,Obregon La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Obregon La Moderna,LG
 OBREGON-LG-R3,Norte,Pacifico Norte,Obregon,Obregon La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Obregon La Moderna,LG
 OBREGON-M-R2,Norte,Pacifico Norte,Obregon,Obregon La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,Obregon La Moderna,M
 OBREGON-M-R3,Norte,Pacifico Norte,Obregon,Obregon La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,Obregon La Moderna,M
-OBREGON-LL-R1,Norte,Pacifico Norte,Obregon,Obregon Presico LL-P,Presico,La Lupita,Présico,México,México,Obregon Presico,LL
+OBREGON-LL-R1,Norte,Pacifico Norte,Obregon,Empalme C-LL,Presico,La Lupita,Présico,México,México,Empalme,LL
 OBREGON-LL-R2,Norte,Pacifico Norte,Obregon,Obregon Presico LL-P,Presico,La Lupita,Présico,México,México,Obregon Presico,LL
 OBREGON-LL-R3,Norte,Pacifico Norte,Obregon,Obregon Presico LL-P,Presico,La Lupita,Présico,México,México,Obregon Presico,LL
 OBREGON-P-R3,Norte,Pacifico Norte,Obregon,Obregon Presico LL-P,Presico,Presico MX,Présico,México,México,Obregon Presico,P
@@ -793,8 +796,9 @@ CULIACAN-M-R2,Norte,Pacifico Sur,Culiacan,Culiacan La Moderna LG-LL-M,La Moderna
 CULIACAN-M-R3,Norte,Pacifico Sur,Culiacan,Culiacan La Moderna LG-LL-M,La Moderna,La Moderna,Présico,México,México,Culiacan La Moderna,M
 CULIACAN-M-R6,Norte,Pacifico Sur,Culiacan,Culiacan La Moderna LG-LL-M,La Moderna,La Moderna,Présico,México,México,Culiacan La Moderna,M
 CULIACAN-P-R1,Norte,Pacifico Sur,Culiacan,Culiacan Presico,Presico,Presico MX,Présico,México,México,Culiacan Presico,P
-CULIACAN-P-R10,Norte,Pacifico Sur,Culiacan,Culiacan Presico,Presico,Presico MX,Présico,México,México,Culiacan Presico,P
 CULIACAN-P-R2,Norte,Pacifico Sur,Culiacan,Culiacan Presico,Presico,Presico MX,Présico,México,México,Culiacan Presico,P
+CULIACAN-P-R9,Norte,Pacifico Sur,Culiacan,Culiacan Presico,Presico,Presico MX,Présico,México,México,Culiacan Presico,P
+CULIACAN-P-R10,Norte,Pacifico Sur,Culiacan,Culiacan Presico,Presico,Presico MX,Présico,México,México,Culiacan Presico,P
 MOCHIS-C-R2,Norte,Pacifico Sur,Mochis,Mochis La Casita C-LG,La Casita,La Casita,Présico,México,México,Mochis La Casita,C
 MOCHIS-C-R3,Norte,Pacifico Sur,Mochis,Mochis La Casita C-LG,La Casita,La Casita,Présico,México,México,Mochis La Casita,C
 MOCHIS-C-R9,Norte,Pacifico Sur,Mochis,Mochis La Casita C-LG,La Casita,La Casita,Présico,México,México,Mochis La Casita,C
@@ -861,6 +865,7 @@ ORIZABA-P-R3,Sur,Golfo,Orizaba,Orizaba La Casita C-P,La Casita,Presico MX,Prési
 ORIZABA-M-R1,Sur,Golfo,Orizaba,Orizaba La Moderna LG-M,La Casita,La Moderna,Présico,México,México,Orizaba La Moderna,M
 ORIZABA-LG-R1,Sur,Golfo,Orizaba,Orizaba La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Orizaba La Moderna,LG
 POZA RICA-C-R1,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
+POZA RICA-C-R2,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
 POZA RICA-C-R3,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
 POZA RICA-C-R4,Sur,Golfo,Poza Rica,Poza Rica La Casita,La Casita,La Casita,Présico,México,México,Poza Rica La Casita,C
 POZA RICA-M-R1,Sur,Golfo,Poza Rica,Poza Rica La Moderna LL-M,La Moderna,La Moderna,Présico,México,México,Poza Rica La Moderna,M
@@ -901,6 +906,7 @@ VERACRUZ-LG-R2,Sur,Golfo,Veracruz,Veracruz La Moderna LG-M,La Moderna,La Guerita
 VERACRUZ-LG-R3,Sur,Golfo,Veracruz,Veracruz La Moderna LG-M,La Moderna,La Guerita,Présico,México,México,Veracruz La Moderna,LG
 VERACRUZ-M-R1,Sur,Golfo,Veracruz,Veracruz La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,Veracruz La Moderna,M
 VERACRUZ-M-R2,Sur,Golfo,Veracruz,Veracruz La Moderna LG-M,La Moderna,La Moderna,Présico,México,México,Veracruz La Moderna,M
+VERACRUZ-PC-R1,Sur,Golfo,Veracruz,Veracruz Presico P-PC,Ciudades Presico,Presico CD,Présico,México,México,Veracruz Presico,PC
 VERACRUZ-PC-R2,Sur,Golfo,Veracruz,Veracruz Presico P-PC,Ciudades Presico,Presico CD,Présico,México,México,Veracruz Presico,PC
 VERACRUZ-P-R1,Sur,Golfo,Veracruz,Veracruz Presico P-PC,Presico,Presico MX,Présico,México,México,Veracruz Presico,P
 VERACRUZ-P-R2,Sur,Golfo,Veracruz,Veracruz Presico P-PC,Presico,Presico MX,Présico,México,México,Veracruz Presico,P
