@@ -127,9 +127,9 @@ TECUN UMAN-PYG-R2,NO APLICA,Costa Occidente,Pacifico Presico,Tecun Uman Pistiyo,
 FRAY BARTOLOME-PYG-R1,NO APLICA,Norte Oriente,Norte,Bartolome Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Bartolome Pistiyo,PY
 FRAY BARTOLOME-PYG-R2,NO APLICA,Norte Oriente,Norte,Bartolome Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Bartolome Pistiyo,PY
 FRAY BARTOLOME-PYG-R3,NO APLICA,Norte Oriente,Norte,Bartolome Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Bartolome Pistiyo,PY
-COBAN-P-R1,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
-COBAN-P-R2,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
-COBAN-P-R3,NO APLICA,Norte Oriente,Norte,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
+COBAN-P-R1,NO APLICA,Norte Oriente,Norte 2,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
+COBAN-P-R2,NO APLICA,Norte Oriente,Norte 2,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
+COBAN-P-R3,NO APLICA,Norte Oriente,Norte 2,Coban Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Coban Presico,P
 FLORES-PYG-R1,NO APLICA,Norte Oriente,Norte,Flores Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Flores Pistiyo,PY
 FLORES-PYG-R2,NO APLICA,Norte Oriente,Norte,Flores Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Flores Pistiyo,PY
 FLORES-P-R1,NO APLICA,Norte Oriente,Norte,Flores Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Flores Presico,P
@@ -138,9 +138,9 @@ FLORES-P-R3,NO APLICA,Norte Oriente,Norte,Flores Presico,Presico,Presico,Présic
 FLORES-P-R4,NO APLICA,Norte Oriente,Norte,Flores Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Flores Presico,P
 IXCAN-PYG-R1,NO APLICA,Norte Oriente,Norte,Ixcan Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Ixcan Pistiyo,PY
 IXCAN-PYG-R2,NO APLICA,Norte Oriente,Norte,Ixcan Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Ixcan Pistiyo,PY
-LA TINTA-PYG-R1,NO APLICA,Norte Oriente,Norte,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
-LA TINTA-PYG-R2,NO APLICA,Norte Oriente,Norte,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
-LA TINTA-PYG-R3,NO APLICA,Norte Oriente,Norte,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
+LA TINTA-PYG-R1,NO APLICA,Norte Oriente,Norte 2,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
+LA TINTA-PYG-R2,NO APLICA,Norte Oriente,Norte 2,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
+LA TINTA-PYG-R3,NO APLICA,Norte Oriente,Norte 2,La Tinta Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,La Tinta Pistiyo,PY
 POPTUN-P-R1,NO APLICA,Norte Oriente,Norte,Poptun Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Poptun Presico,P
 POPTUN-P-R2,NO APLICA,Norte Oriente,Norte,Poptun Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Poptun Presico,P
 POPTUN-P-R3,NO APLICA,Norte Oriente,Norte,Poptun Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Poptun Presico,P
@@ -171,19 +171,19 @@ CHIQUIMULA-P-R2,NO APLICA,Norte Oriente,Oriente,Chiquimula Presico,Presico,Presi
 CHIQUIMULA-P-R3,NO APLICA,Norte Oriente,Oriente,Chiquimula Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Chiquimula Presico,P
 GUALAN-PYG-R1,NO APLICA,Norte Oriente,Oriente,Gualan Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Gualan Pistiyo,PY
 GUALAN-PYG-R2,NO APLICA,Norte Oriente,Oriente,Gualan Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Gualan Pistiyo,PY
-GUASTATOYA-P-R1,NO APLICA,Norte Oriente,Oriente,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
-GUASTATOYA-P-R2,NO APLICA,Norte Oriente,Oriente,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
-GUASTATOYA-P-R3,NO APLICA,Norte Oriente,Oriente,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
-GUASTATOYA-P-R4,NO APLICA,Norte Oriente,Oriente,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
-GUASTATOYA-P-R5,NO APLICA,Norte Oriente,Oriente,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
+GUASTATOYA-P-R1,NO APLICA,Norte Oriente,Norte 2,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
+GUASTATOYA-P-R2,NO APLICA,Norte Oriente,Norte 2,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
+GUASTATOYA-P-R3,NO APLICA,Norte Oriente,Norte 2,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
+GUASTATOYA-P-R4,NO APLICA,Norte Oriente,Norte 2,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
+GUASTATOYA-P-R5,NO APLICA,Norte Oriente,Norte 2,Guastatoya Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Guastatoya Presico,P
 MORALES-P-R1,NO APLICA,Norte Oriente,Oriente,Morales Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Morales Presico,P
 MORALES-P-R2,NO APLICA,Norte Oriente,Oriente,Morales Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Morales Presico,P
 MORALES-P-R3,NO APLICA,Norte Oriente,Oriente,Morales Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Morales Presico,P
-RABINAL-PYG-R1,NO APLICA,Norte Oriente,Oriente,Rabinal Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Rabinal Pistiyo,PY
-RABINAL-PYG-R2,NO APLICA,Norte Oriente,Oriente,Rabinal Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Rabinal Pistiyo,PY
-SALAMA-PYG-R1,NO APLICA,Norte Oriente,Oriente,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
-SALAMA-PYG-R2,NO APLICA,Norte Oriente,Oriente,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
-SALAMA-PYG-R3,NO APLICA,Norte Oriente,Oriente,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
+RABINAL-PYG-R1,NO APLICA,Norte Oriente,Norte 2,Rabinal Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Rabinal Pistiyo,PY
+RABINAL-PYG-R2,NO APLICA,Norte Oriente,Norte 2,Rabinal Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Rabinal Pistiyo,PY
+SALAMA-PYG-R1,NO APLICA,Norte Oriente,Norte 2,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
+SALAMA-PYG-R2,NO APLICA,Norte Oriente,Norte 2,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
+SALAMA-PYG-R3,NO APLICA,Norte Oriente,Norte 2,Salama Pistiyo,Pistiyo,Pistiyo,Présico LATAM,Guatemala,Centroamérica,Salama Pistiyo,PY
 BARBERENA-P-R1,NO APLICA,Norte Oriente,Oriente Sur,Barberena Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Barberena Presico,P
 BARBERENA-P-R2,NO APLICA,Norte Oriente,Oriente Sur,Barberena Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Barberena Presico,P
 BARBERENA-P-R3,NO APLICA,Norte Oriente,Oriente Sur,Barberena Presico,Presico,Presico,Présico LATAM,Guatemala,Centroamérica,Barberena Presico,P
@@ -738,17 +738,17 @@ HERMOSILLO-LL-R1,Norte,Pacifico Norte,Hermosillo,Hermosillo Presico C-LL-P,Presi
 HERMOSILLO-LL-R2,Norte,Pacifico Norte,Hermosillo,Hermosillo Presico C-LL-P,Presico,La Lupita,Présico,México,México,Hermosillo Presico,LL
 HERMOSILLO-P-R1,Norte,Pacifico Norte,Hermosillo,Hermosillo Presico C-LL-P,Presico,Presico MX,Présico,México,México,Hermosillo Presico,P
 HERMOSILLO-P-R3,Norte,Pacifico Norte,Hermosillo,Hermosillo Presico C-LL-P,Presico,Presico MX,Présico,México,México,Hermosillo Presico,P
-NACOZARI-M-R1,Norte,Pacifico Norte,Hermosillo,Nacozari La Moderna LG-LL-M,La Moderna,La Moderna,Présico,México,México,Nacozari La Moderna,M
-NACOZARI-LL-R1,Norte,Pacifico Norte,Hermosillo,Nacozari La Moderna LG-LL-M,La Moderna,La Lupita,Présico,México,México,Nacozari La Moderna,LL
-NACOZARI-LG-R1,Norte,Pacifico Norte,Hermosillo,Nacozari La Moderna LG-LL-M,La Moderna,La Guerita,Présico,México,México,Nacozari La Moderna,LG
+NACOZARI-M-R1,Norte,Pacifico Norte,Nacozari,Nacozari La Moderna LG-LL-M,La Moderna,La Moderna,Présico,México,México,Nacozari La Moderna,M
+NACOZARI-LL-R1,Norte,Pacifico Norte,Nacozari,Nacozari La Moderna LG-LL-M,La Moderna,La Lupita,Présico,México,México,Nacozari La Moderna,LL
+NACOZARI-LG-R1,Norte,Pacifico Norte,Nacozari,Nacozari La Moderna LG-LL-M,La Moderna,La Guerita,Présico,México,México,Nacozari La Moderna,LG
 MAGDALENA DE KINO-C-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino La Casita C-M,La Casita,La Casita,Présico,México,México,Magdalena De Kino La Casita,C
 MAGDALENA DE KINO-M-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino La Casita C-M,La Casita,La Moderna,Présico,México,México,Magdalena De Kino La Casita,M
 MAGDALENA DE KINO-M-R2,Norte,Pacifico Norte,Magdalena,Magdalena De Kino La Casita C-M,La Casita,La Moderna,Présico,México,México,Magdalena De Kino La Casita,M
-MAGDALENA DE KINO-LG-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LG-LL-P,Presico,La Guerita,Présico,México,México,Magdalena De Kino Presico,LG
-MAGDALENA DE KINO-LL-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LG-LL-P,Presico,La Lupita,Présico,México,México,Magdalena De Kino Presico,LL
-MAGDALENA DE KINO-LL-R2,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LG-LL-P,Presico,La Lupita,Présico,México,México,Magdalena De Kino Presico,LL
-MAGDALENA DE KINO-P-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LG-LL-P,Presico,Presico MX,Présico,México,México,Magdalena De Kino Presico,P
-MAGDALENA DE KINO-P-R4,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LG-LL-P,Presico,Presico MX,Présico,México,México,Magdalena De Kino Presico,P
+MAGDALENA DE KINO-LG-R1,Norte,Pacifico Norte,Nacozari,Nacozari La Moderna LG-LL-M,Presico,La Guerita,Présico,México,México,Nacozari La Moderna,LG
+MAGDALENA DE KINO-LL-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LL-P,Presico,La Lupita,Présico,México,México,Magdalena De Kino Presico,LL
+MAGDALENA DE KINO-LL-R2,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LL-P,Presico,La Lupita,Présico,México,México,Magdalena De Kino Presico,LL
+MAGDALENA DE KINO-P-R1,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LL-P,Presico,Presico MX,Présico,México,México,Magdalena De Kino Presico,P
+MAGDALENA DE KINO-P-R4,Norte,Pacifico Norte,Magdalena,Magdalena De Kino Presico LL-P,Presico,Presico MX,Présico,México,México,Magdalena De Kino Presico,P
 NAVOJOA-C-R2,Norte,Pacifico Norte,Navojoa,Navojoa La Casita C-LG,La Casita,La Casita,Présico,México,México,Navojoa La Casita,C
 NAVOJOA-C-R3,Norte,Pacifico Norte,Navojoa,Navojoa La Casita C-LG,La Casita,La Casita,Présico,México,México,Navojoa La Casita,C
 NAVOJOA-C-R4,Norte,Pacifico Norte,Navojoa,Navojoa La Casita C-LG,La Casita,La Casita,Présico,México,México,Navojoa La Casita,C
