@@ -332,9 +332,8 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 
     if profile == "Presico":
         has_coordinator = result["Coord Totales"].eq(1)
-        has_portfolio = result["Cartera Total"].ne(0)
-        productive = has_coordinator & has_portfolio & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
-        developing = has_coordinator & has_portfolio & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
+        productive = has_coordinator & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
+        developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
         result["Máx. de Coordinadora"] = coordinator_change
         result["Máx. de Coord Nueva"] = new_coordinator
         result["Cambio Coordinadora"] = coordinator_change
@@ -346,8 +345,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["Coord prod"] = productive.astype(int)
         result["Coord en desarrollo"] = developing.astype(int)
         result["Coord impro"] = (
-            has_coordinator & has_portfolio
-            & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
+            has_coordinator & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
         ).astype(int)
         order = [
             "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
@@ -700,4 +698,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
