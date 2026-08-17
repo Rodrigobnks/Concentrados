@@ -220,6 +220,24 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 
 def prepare_base(raw: pd.DataFrame, profile: str, structure: pd.DataFrame) -> pd.DataFrame:
     raw = normalize_frame(raw)
+
+    # PRESICO / MÉXICO: los concentrados históricos pueden llamar FECHA al corte.
+    # La normalización se hace aquí para no modificar LATAM ni Vales.
+    if profile == "Presico" and "Clientes al corriente" not in raw.columns:
+        current_clients_column = column_name(raw, "Clientes al Corriente")
+        if current_clients_column is not None:
+            raw["Clientes al corriente"] = raw[current_clients_column]
+    if profile == "Presico" and "Corte" not in raw.columns:
+        fecha_column = column_name(raw, "FECHA", "Fecha")
+        if fecha_column is not None:
+            raw["Corte"] = raw[fecha_column]
+    if (
+        profile == "Presico"
+        and "Cambio de Coordinadora" not in raw.columns
+        and "Cambio Coordinadora" in raw.columns
+    ):
+        raw["Cambio de Coordinadora"] = raw["Cambio Coordinadora"]
+
     already_calculated = {"Clientes Totales", "Cartera Total", "Cartera sin atrasos"}.issubset(raw.columns)
 
     if not already_calculated:
@@ -233,6 +251,44 @@ def prepare_base(raw: pd.DataFrame, profile: str, structure: pd.DataFrame) -> pd
         base = add_excel_calculations(base, profile)
     elif "Corte" in base.columns:
         base["Corte"] = excel_datetime(base["Corte"])
+
+    if profile == "Presico":
+        # Un concentrado de México representa un solo corte. Si el archivo contiene
+        # historial, usar únicamente el corte más reciente evita sumar la misma
+        # localidad en varios días y sobredimensionar productivas/desarrollo.
+        if "Corte" in base.columns:
+            base["Corte"] = excel_datetime(base["Corte"])
+            valid_cutoffs = base["Corte"].dropna()
+            if not valid_cutoffs.empty:
+                latest_cutoff = valid_cutoffs.max()
+                base = base.loc[base["Corte"].eq(latest_cutoff)].copy()
+
+        # Entre el 11 y 14 de julio hubo archivos con el esquema anterior:
+        # T/U eran máximos auxiliares y las cuatro banderas de coordinadoras
+        # quedaron desplazadas dos columnas. Solo se repara cuando la mayoría
+        # de las filas incumple la identidad Totales = prod + desarrollo + impro.
+        shifted_columns = {
+            "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
+            "Cambio Coordinadora", "Coord Nueva",
+        }
+        if already_calculated and shifted_columns.issubset(base.columns) and not base.empty:
+            coord_total = numeric(base, "Coord Totales")
+            classified = (
+                numeric(base, "Coord prod")
+                + numeric(base, "Coord en desarrollo")
+                + numeric(base, "Coord impro")
+            )
+            mismatch_rate = classified.ne(coord_total).mean()
+            shifted_total = numeric(base, "Coord en desarrollo")
+            shifted_is_binary = shifted_total.isin([0, 1]).all()
+            shifted_has_more_totals = shifted_total.sum() > coord_total.sum()
+            if mismatch_rate >= 0.25 and shifted_is_binary and shifted_has_more_totals:
+                base["Coord Totales"] = shifted_total
+                base["Coord prod"] = numeric(base, "Coord impro")
+                base["Coord en desarrollo"] = numeric(base, "Cambio Coordinadora")
+                base["Coord impro"] = numeric(base, "Coord Nueva")
+                base["Cambio de Coordinadora"] = 0
+                base["Coord Nueva"] = 0
     return base
 
 
@@ -309,6 +365,10 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     work = base.copy()
     sum_cols = [c for c in SUM_COLUMNS if c in work.columns]
     max_cols = [c for c in MAX_COLUMNS if c in work.columns]
+    # PRESICO ya calculado trae Coord Totales en lugar de Coord Principal.
+    # Se agrega como máximo por localidad, nunca como suma.
+    if profile == "Presico" and "Coord Totales" in work.columns and "Coord Totales" not in max_cols:
+        max_cols.append("Coord Totales")
     for column in sum_cols + max_cols:
         work[column] = pd.to_numeric(work[column], errors="coerce").fillna(0)
 
@@ -318,7 +378,10 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["Cartera sin atrasos"], result["Cartera Total"],
         out=np.zeros(len(result), dtype=float), where=result["Cartera Total"].ne(0),
     )
-    principal = result.get("Coord Principal", pd.Series(0, index=result.index))
+    if profile == "Presico" and "Coord Principal" not in result.columns:
+        principal = result.get("Coord Totales", pd.Series(0, index=result.index))
+    else:
+        principal = result.get("Coord Principal", pd.Series(0, index=result.index))
     new_coordinator = result.get("Coord Nueva", pd.Series(0, index=result.index))
     coordinator_change = result.get("Cambio de Coordinadora", pd.Series(0, index=result.index))
     result["Coord Totales"] = principal
@@ -334,14 +397,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         has_coordinator = result["Coord Totales"].eq(1)
         productive = has_coordinator & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
         developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
-        result["Máx. de Coordinadora"] = coordinator_change
-        result["Máx. de Coord Nueva"] = new_coordinator
         result["Cambio Coordinadora"] = coordinator_change
-        legacy_columns = [
-            column for column in result.columns
-            if "de Coordinadora" in column or "de Coord Nueva" in column
-        ]
-        result = result.drop(columns=legacy_columns)
         result["Coord prod"] = productive.astype(int)
         result["Coord en desarrollo"] = developing.astype(int)
         result["Coord impro"] = (
@@ -351,8 +407,8 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
             "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
             "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso", "Cartera Total", "Cartera sin atrasos",
             "Calidad", "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
-            "CO Reconquista #", "Nunca Abonada", "Máx. de Coordinadora", "Máx. de Coord Nueva",
-            "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
+            "CO Reconquista #", "Nunca Abonada", "Coord Totales", "Coord prod",
+            "Coord en desarrollo", "Coord impro",
             "Cambio Coordinadora", "Coord Nueva",
         ]
     else:
