@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import date, datetime, time, timedelta
 from io import BytesIO
 from pathlib import Path
 import tempfile
@@ -9,6 +10,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from openpyxl.styles import Font, PatternFill
+from openpyxl.utils.datetime import to_excel
 
 
 st.set_page_config(page_title="Concentrados de cartera", page_icon="📊", layout="wide")
@@ -104,6 +106,18 @@ def numeric(df: pd.DataFrame, column: str) -> pd.Series:
     return pd.to_numeric(df[column], errors="coerce").fillna(0)
 
 
+def numeric_excel_serials(df: pd.DataFrame, column: str) -> pd.Series:
+    """Recupera importes que Excel guardó con formato de fecha."""
+    if column not in df.columns:
+        return pd.Series(0.0, index=df.index)
+    restored = df[column].map(
+        lambda value: to_excel(value)
+        if isinstance(value, (datetime, date, time, timedelta))
+        else value
+    )
+    return pd.to_numeric(restored, errors="coerce").fillna(0)
+
+
 def column_name(df: pd.DataFrame, *candidates: str) -> str | None:
     """Encuentra una columna sin depender de acentos, mayúsculas o espacios."""
     available = {name_key(column): column for column in df.columns}
@@ -185,7 +199,15 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     result["Faltas"] = (result["Clientes Totales"].eq(1) & days.gt(0)).astype(int)
 
     standard_portfolio = numeric(result, "colocado_ci") + numeric(result, "colocado_pp")
-    result["Cartera Total"] = np.where(is_fp, numeric(result, "colocado_con_interes_fp"), standard_portfolio)
+    if profile == "Presico":
+        fp_raw = result.get("colocado_con_interes_fp", pd.Series(np.nan, index=result.index))
+        fp_available = fp_raw.notna() & ~fp_raw.astype(str).str.strip().isin(["", "nan", "NaT", "None"])
+        fp_portfolio = numeric_excel_serials(result, "colocado_con_interes_fp")
+        result["Cartera Total"] = np.where(is_fp & fp_available, fp_portfolio, standard_portfolio)
+    else:
+        result["Cartera Total"] = np.where(
+            is_fp, numeric(result, "colocado_con_interes_fp"), standard_portfolio
+        )
     result["Cartera sin atrasos"] = np.where(days.gt(7), 0, result["Cartera Total"])
 
     change_raw = result["CAMBIO_COORDINAODRA"]
@@ -207,7 +229,12 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 
     change_date = excel_datetime(result["fecha_cambio_coordinadora"])
     current_change = same_excel_week(cutoff, change_date)
-    result["Coord Nueva"] = (current_change & change.eq(1)).astype(int)
+    if profile == "Presico":
+        change_age_days = (cutoff - change_date).dt.total_seconds().div(86400)
+        new_coordinator_period = change_age_days.ge(0) & change_age_days.le(7)
+    else:
+        new_coordinator_period = current_change
+    result["Coord Nueva"] = (new_coordinator_period & change.eq(1)).astype(int)
     result["Cambio de Coordinadora"] = (current_change & change.gt(1)).astype(int)
 
     payments_raw = result["pagosRealizados"]
@@ -332,8 +359,9 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 
     if profile == "Presico":
         has_coordinator = result["Coord Totales"].eq(1)
-        productive = has_coordinator & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
-        developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
+        has_portfolio = result["Cartera Total"].ne(0)
+        productive = has_coordinator & has_portfolio & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
+        developing = has_coordinator & has_portfolio & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
         result["Máx. de Coordinadora"] = coordinator_change
         result["Máx. de Coord Nueva"] = new_coordinator
         result["Cambio Coordinadora"] = coordinator_change
@@ -345,7 +373,8 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["Coord prod"] = productive.astype(int)
         result["Coord en desarrollo"] = developing.astype(int)
         result["Coord impro"] = (
-            has_coordinator & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
+            has_coordinator & has_portfolio
+            & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
         ).astype(int)
         order = [
             "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
