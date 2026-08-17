@@ -170,7 +170,7 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     is_fp = loan_key.eq("financiero personal")
     is_pp = loan_key.eq("prestamo personal")
 
-    if profile in {"LATAM", "Presico"}:
+    if profile == "LATAM":
         result["Clientes Totales"] = (~is_fp & ~is_pp).astype(int)
         result["FP"] = is_fp.astype(int)
         result["FP Al Corriente"] = (is_fp & days.eq(0)).astype(int)
@@ -220,24 +220,6 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
 
 def prepare_base(raw: pd.DataFrame, profile: str, structure: pd.DataFrame) -> pd.DataFrame:
     raw = normalize_frame(raw)
-
-    # PRESICO / MÉXICO: los concentrados históricos pueden llamar FECHA al corte.
-    # La normalización se hace aquí para no modificar LATAM ni Vales.
-    if profile == "Presico" and "Clientes al corriente" not in raw.columns:
-        current_clients_column = column_name(raw, "Clientes al Corriente")
-        if current_clients_column is not None:
-            raw["Clientes al corriente"] = raw[current_clients_column]
-    if profile == "Presico" and "Corte" not in raw.columns:
-        fecha_column = column_name(raw, "FECHA", "Fecha")
-        if fecha_column is not None:
-            raw["Corte"] = raw[fecha_column]
-    if (
-        profile == "Presico"
-        and "Cambio de Coordinadora" not in raw.columns
-        and "Cambio Coordinadora" in raw.columns
-    ):
-        raw["Cambio de Coordinadora"] = raw["Cambio Coordinadora"]
-
     already_calculated = {"Clientes Totales", "Cartera Total", "Cartera sin atrasos"}.issubset(raw.columns)
 
     if not already_calculated:
@@ -316,8 +298,6 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
 def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     if profile == "LATAM":
         dims = ["Corte", "Pais", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
-    elif profile == "Presico":
-        dims = ["Corte", "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
     else:
         dims = ["Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
 
@@ -329,10 +309,6 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     work = base.copy()
     sum_cols = [c for c in SUM_COLUMNS if c in work.columns]
     max_cols = [c for c in MAX_COLUMNS if c in work.columns]
-    # PRESICO ya calculado trae Coord Totales en lugar de Coord Principal.
-    # Se agrega como máximo por localidad, nunca como suma.
-    if profile == "Presico" and "Coord Totales" in work.columns and "Coord Totales" not in max_cols:
-        max_cols.append("Coord Totales")
     for column in sum_cols + max_cols:
         work[column] = pd.to_numeric(work[column], errors="coerce").fillna(0)
 
@@ -342,10 +318,7 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["Cartera sin atrasos"], result["Cartera Total"],
         out=np.zeros(len(result), dtype=float), where=result["Cartera Total"].ne(0),
     )
-    if profile == "Presico" and "Coord Principal" not in result.columns:
-        principal = result.get("Coord Totales", pd.Series(0, index=result.index))
-    else:
-        principal = result.get("Coord Principal", pd.Series(0, index=result.index))
+    principal = result.get("Coord Principal", pd.Series(0, index=result.index))
     new_coordinator = result.get("Coord Nueva", pd.Series(0, index=result.index))
     coordinator_change = result.get("Cambio de Coordinadora", pd.Series(0, index=result.index))
     result["Coord Totales"] = principal
@@ -358,35 +331,28 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     result = result.rename(columns=common_rename)
 
     if profile == "Presico":
-        # Mismas reglas de LATAM: el total de clientes incluye cartera normal,
-        # Financiero Personal (FP) y Préstamo Personal (PP).
-        result["Clientes totales"] = (
-            result["Clientes totales"] + result.get("FP", 0) + result.get("PP", 0)
-        )
-        result["Clientes al corriente"] = (
-            result["Clientes al corriente"]
-            + result.get("FP al corriente", 0)
-            + result.get("PP al corriente", 0)
-        )
-        result["Faltas"] = (
-            result["Faltas"] + result.get("FP Falta", 0) + result.get("PP Falta", 0)
-        )
         has_coordinator = result["Coord Totales"].eq(1)
         productive = has_coordinator & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
         developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
+        result["Máx. de Coordinadora"] = coordinator_change
+        result["Máx. de Coord Nueva"] = new_coordinator
         result["Cambio Coordinadora"] = coordinator_change
+        legacy_columns = [
+            column for column in result.columns
+            if "de Coordinadora" in column or "de Coord Nueva" in column
+        ]
+        result = result.drop(columns=legacy_columns)
         result["Coord prod"] = productive.astype(int)
         result["Coord en desarrollo"] = developing.astype(int)
         result["Coord impro"] = (
             has_coordinator & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
         ).astype(int)
-        result["Fecha corte"] = result["Corte"]
         order = [
-            "Fecha corte", "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
+            "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
             "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso", "Cartera Total", "Cartera sin atrasos",
             "Calidad", "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
-            "CO Reconquista #", "Nunca Abonada", "Coord Totales", "Coord prod",
-            "Coord en desarrollo", "Coord impro",
+            "CO Reconquista #", "Nunca Abonada", "Máx. de Coordinadora", "Máx. de Coord Nueva",
+            "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
             "Cambio Coordinadora", "Coord Nueva",
         ]
     else:
