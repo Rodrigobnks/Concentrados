@@ -170,7 +170,7 @@ def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     is_fp = loan_key.eq("financiero personal")
     is_pp = loan_key.eq("prestamo personal")
 
-    if profile == "LATAM":
+    if profile in {"LATAM", "Presico"}:
         result["Clientes Totales"] = (~is_fp & ~is_pp).astype(int)
         result["FP"] = is_fp.astype(int)
         result["FP Al Corriente"] = (is_fp & days.eq(0)).astype(int)
@@ -251,44 +251,6 @@ def prepare_base(raw: pd.DataFrame, profile: str, structure: pd.DataFrame) -> pd
         base = add_excel_calculations(base, profile)
     elif "Corte" in base.columns:
         base["Corte"] = excel_datetime(base["Corte"])
-
-    if profile == "Presico":
-        # Un concentrado de México representa un solo corte. Si el archivo contiene
-        # historial, usar únicamente el corte más reciente evita sumar la misma
-        # localidad en varios días y sobredimensionar productivas/desarrollo.
-        if "Corte" in base.columns:
-            base["Corte"] = excel_datetime(base["Corte"])
-            valid_cutoffs = base["Corte"].dropna()
-            if not valid_cutoffs.empty:
-                latest_cutoff = valid_cutoffs.max()
-                base = base.loc[base["Corte"].eq(latest_cutoff)].copy()
-
-        # Entre el 11 y 14 de julio hubo archivos con el esquema anterior:
-        # T/U eran máximos auxiliares y las cuatro banderas de coordinadoras
-        # quedaron desplazadas dos columnas. Solo se repara cuando la mayoría
-        # de las filas incumple la identidad Totales = prod + desarrollo + impro.
-        shifted_columns = {
-            "Coord Totales", "Coord prod", "Coord en desarrollo", "Coord impro",
-            "Cambio Coordinadora", "Coord Nueva",
-        }
-        if already_calculated and shifted_columns.issubset(base.columns) and not base.empty:
-            coord_total = numeric(base, "Coord Totales")
-            classified = (
-                numeric(base, "Coord prod")
-                + numeric(base, "Coord en desarrollo")
-                + numeric(base, "Coord impro")
-            )
-            mismatch_rate = classified.ne(coord_total).mean()
-            shifted_total = numeric(base, "Coord en desarrollo")
-            shifted_is_binary = shifted_total.isin([0, 1]).all()
-            shifted_has_more_totals = shifted_total.sum() > coord_total.sum()
-            if mismatch_rate >= 0.25 and shifted_is_binary and shifted_has_more_totals:
-                base["Coord Totales"] = shifted_total
-                base["Coord prod"] = numeric(base, "Coord impro")
-                base["Coord en desarrollo"] = numeric(base, "Cambio Coordinadora")
-                base["Coord impro"] = numeric(base, "Coord Nueva")
-                base["Cambio de Coordinadora"] = 0
-                base["Coord Nueva"] = 0
     return base
 
 
@@ -354,6 +316,8 @@ def prepare_vales(raw: pd.DataFrame) -> pd.DataFrame:
 def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     if profile == "LATAM":
         dims = ["Corte", "Pais", "Unidad de negocio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
+    elif profile == "Presico":
+        dims = ["Corte", "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
     else:
         dims = ["Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad"]
 
@@ -394,6 +358,19 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
     result = result.rename(columns=common_rename)
 
     if profile == "Presico":
+        # Mismas reglas de LATAM: el total de clientes incluye cartera normal,
+        # Financiero Personal (FP) y Préstamo Personal (PP).
+        result["Clientes totales"] = (
+            result["Clientes totales"] + result.get("FP", 0) + result.get("PP", 0)
+        )
+        result["Clientes al corriente"] = (
+            result["Clientes al corriente"]
+            + result.get("FP al corriente", 0)
+            + result.get("PP al corriente", 0)
+        )
+        result["Faltas"] = (
+            result["Faltas"] + result.get("FP Falta", 0) + result.get("PP Falta", 0)
+        )
         has_coordinator = result["Coord Totales"].eq(1)
         productive = has_coordinator & result["Clientes totales"].ge(21) & result["Calidad"].ge(0.60)
         developing = has_coordinator & result["Clientes totales"].lt(21) & result["Calidad"].ge(0.60)
@@ -403,8 +380,9 @@ def build_concentrado(base: pd.DataFrame, profile: str) -> pd.DataFrame:
         result["Coord impro"] = (
             has_coordinator & result["Coord prod"].eq(0) & result["Coord en desarrollo"].eq(0)
         ).astype(int)
+        result["Fecha corte"] = result["Corte"]
         order = [
-            "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
+            "Fecha corte", "Unidad de negocio", "Territorio", "Subdireccion", "Zona", "Sucursal", "ruta", "id_y_localidad",
             "Clientes totales", "Clientes al corriente", "Faltas", "Máx. días de atraso", "Cartera Total", "Cartera sin atrasos",
             "Calidad", "CO Renov $", "CO Nuevos $", "CO Reconquista $", "CO Renov #", "CO Nuevos #",
             "CO Reconquista #", "Nunca Abonada", "Coord Totales", "Coord prod",
