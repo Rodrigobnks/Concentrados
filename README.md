@@ -15,7 +15,8 @@ filtrado en Excel o CSV.
 
 Para LATAM y Presico, la estructura se descarga de la pestaña `gid=524994183`
 de [Google Sheets](https://docs.google.com/spreadsheets/d/1bPT3xYuTWVEZ2IoukIQZcHBbrOZR6TUK/edit?gid=524994183).
-La aplicación consulta la versión actualizada cada 60 segundos como máximo.
+La descarga se guarda en caché durante 60 segundos; después se vuelve a
+consultar al procesar un reporte.
 La hoja debe permitir acceso de lectura mediante el enlace y exportación CSV.
 La aplicación no utiliza claves, contraseñas ni variables secretas.
 
