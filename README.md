@@ -9,12 +9,15 @@ filtrado en Excel o CSV.
 ```text
 .
 ├── app.py
-├── estructura.csv
 ├── README.md
 └── requirements.txt
 ```
 
-`estructura.csv` debe conservar ese nombre y permanecer junto a `app.py`.
+Para LATAM y Presico, la estructura se descarga de la pestaña `gid=524994183`
+de [Google Sheets](https://docs.google.com/spreadsheets/d/1bPT3xYuTWVEZ2IoukIQZcHBbrOZR6TUK/edit?gid=524994183).
+La descarga se guarda en caché durante 60 segundos; después se vuelve a
+consultar al procesar un reporte.
+La hoja debe permitir acceso de lectura mediante el enlace y exportación CSV.
 La aplicación no utiliza claves, contraseñas ni variables secretas.
 
 ## Ejecución local
@@ -36,8 +39,8 @@ La aplicación acepta:
 ## Publicación en GitHub
 
 1. Crea un repositorio nuevo en GitHub.
-2. Sube a la raíz los cuatro archivos indicados arriba.
-3. Confirma que `app.py`, `estructura.csv` y `requirements.txt` aparezcan en
+2. Sube a la raíz los tres archivos indicados arriba.
+3. Confirma que `app.py` y `requirements.txt` aparezcan en
    la rama que vas a desplegar.
 
 ## Despliegue en Streamlit Community Cloud
@@ -54,8 +57,8 @@ acceder a él.
 
 ## Lógica reproducida
 
-- Agrega la jerarquía comercial desde `estructura.csv` cuando el reporte es
-  crudo.
+- Asigna la jerarquía comercial desde Google Sheets por `ruta`, incluso si el
+  reporte ya trae columnas de estructura. Vales no consulta la hoja.
 - Reproduce las fórmulas de clientes, cartera, calidad, colocaciones y
   coordinadoras.
 - Agrupa por jerarquía comercial, ruta e `id_y_localidad`.
@@ -68,6 +71,5 @@ acceder a él.
 
 ## Validación
 
-La versión entregada fue comprobada con Python 3.12, lectura del catálogo,
-procesamiento de ejemplos LATAM y Presico, generación de Excel y arranque de
-la interfaz Streamlit.
+La aplicación valida que la hoja de estructura tenga las columnas y rutas
+necesarias antes de formar los concentrados.

@@ -5,6 +5,7 @@ from io import BytesIO
 from pathlib import Path
 import tempfile
 import unicodedata
+from urllib.request import urlopen
 
 import numpy as np
 import pandas as pd
@@ -14,6 +15,11 @@ from openpyxl.utils.datetime import to_excel
 
 
 st.set_page_config(page_title="Concentrados de cartera", page_icon="📊", layout="wide")
+
+STRUCTURE_CSV_URL = (
+    "https://docs.google.com/spreadsheets/d/1bPT3xYuTWVEZ2IoukIQZcHBbrOZR6TUK/"
+    "export?format=csv&gid=524994183"
+)
 
 SUM_COLUMNS = [
     "Clientes Totales", "Clientes al corriente", "Faltas", "Distribuidoras al corriente",
@@ -92,12 +98,28 @@ def read_sheet(content: bytes, suffix: str, sheet_name: str) -> pd.DataFrame:
         path.unlink(missing_ok=True)
 
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def load_structure() -> pd.DataFrame:
-    path = Path(__file__).with_name("estructura.csv")
-    if not path.exists():
-        raise FileNotFoundError("Falta estructura.csv junto a app.py")
-    return normalize_frame(pd.read_csv(path, encoding="utf-8-sig"))
+    try:
+        with urlopen(STRUCTURE_CSV_URL, timeout=30) as response:
+            content = response.read()
+    except OSError as exc:
+        raise RuntimeError(
+            "No se pudo descargar la estructura de Google Sheets. "
+            "Verifica el acceso de lectura a la hoja y vuelve a intentar."
+        ) from exc
+
+    structure = normalize_frame(pd.read_csv(BytesIO(content), encoding="utf-8-sig", dtype=str))
+    required = {"ruta", "Territorio", "Subdireccion", "Zona", "Sucursal", "Base", "Pais"}
+    missing = required.difference(structure.columns)
+    if structure.empty or missing:
+        raise ValueError(
+            "La hoja de estructura está vacía o le faltan columnas: "
+            + ", ".join(sorted(missing or required))
+        )
+    if structure["ruta"].isna().any() or structure["ruta"].duplicated().any():
+        raise ValueError("La hoja de estructura contiene rutas vacías o duplicadas.")
+    return structure
 
 
 def numeric(df: pd.DataFrame, column: str) -> pd.Series:
@@ -151,20 +173,14 @@ def same_excel_week(left: pd.Series, right: pd.Series) -> pd.Series:
 
 
 def add_structure(raw: pd.DataFrame, structure: pd.DataFrame) -> pd.DataFrame:
-    if all(c in raw.columns for c in ["Territorio", "Subdireccion", "Zona", "Sucursal", "Unidad de negocio"]):
-        return raw
-    catalog = structure.rename(columns={
-        "Ruta": "ruta", "Base": "Unidad de negocio", "País": "Pais",
-        "Unidad de Negocio": "Unidad LATAM",
-    })
-    catalog = catalog.loc[:, ~catalog.columns.duplicated()]
     targets = ["Territorio", "Subdireccion", "Zona", "Sucursal", "Unidad de negocio", "Pais"]
-    add = [c for c in targets if c in catalog.columns and c not in raw.columns]
     if "ruta" not in raw.columns:
         raise ValueError("No se encontró la columna 'ruta' en la hoja seleccionada.")
-    catalog = catalog[["ruta", *add]].drop_duplicates(subset=["ruta"])
-    result = raw.merge(catalog, on="ruta", how="left", validate="many_to_one")
-    return result
+    catalog = structure[["ruta", "Territorio", "Subdireccion", "Zona", "Sucursal", "Base", "Pais"]]
+    catalog = catalog.rename(columns={"Base": "Unidad de negocio"})
+    return raw.drop(columns=targets, errors="ignore").merge(
+        catalog, on="ruta", how="left", validate="many_to_one"
+    )
 
 
 def add_excel_calculations(base: pd.DataFrame, profile: str) -> pd.DataFrame:
