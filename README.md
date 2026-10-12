@@ -72,4 +72,3 @@ acceder a él.
 
 La aplicación valida que la hoja de estructura tenga las columnas y rutas
 necesarias antes de formar los concentrados.
-
